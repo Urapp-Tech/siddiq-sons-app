@@ -1,0 +1,82 @@
+<ion-menu menuId="main-menu" contentId="main-content">
+  <ion-content class="tw-h-screen tw-w-fill-available tw-ion-bg-gray-900">
+    @if (userData) {
+      <div class="tw-flex tw-h-full tw-w-full tw-flex-col">
+        <div class="tw-z-20 tw-m-4">
+          <img
+            class="tw-mb-2 tw-size-20 tw-rounded-full tw-object-cover tw-outline tw-outline-2 tw-outline-gray-100"
+            [src]="userData.avatar ?? 'assets/images/profile-placeholder.png'"
+          />
+          <div class="tw-font-roboto tw-text-lg tw-font-bold tw-text-gray-100">
+            {{ userData.username }}
+          </div>
+          <div class="tw-font-roboto tw-text-sm tw-font-bold tw-text-gray-200">
+            {{ userData.email }}
+          </div>
+        </div>
+
+        <hr class="tw-m-0 tw-h-0.5 tw-w-full tw-bg-gray-100" />
+
+        <div class="tw-grow tw-overflow-auto">
+          @for (link of links; track link.path) {
+            <a
+              class="ion-activatable tw-relative tw-flex tw-w-full tw-items-center tw-overflow-hidden tw-bg-transparent tw-py-4 tw-text-start tw-text-gray-100 tw-no-underline"
+              (click)="navigateTo(link.path)"
+            >
+              <ion-ripple-effect />
+              @if (link.iconType === 'NATIVE') {
+                <ion-icon
+                  class="tw-mx-4 tw-text-xl tw-text-gray-100"
+                  [name]="link.icon"
+                />
+              }
+              @if (link.iconType === 'IMPORTED') {
+                <ion-icon
+                  class="tw-mx-4 tw-text-xl tw-text-gray-100"
+                  [src]="link.icon"
+                />
+              }
+              <div
+                [cn]="[
+                  'tw-font-roboto tw-text-lg tw-font-normal',
+                  isRouteActive(link.path) && 'tw-font-bold',
+                ]"
+              >
+                {{ link.name }}
+              </div>
+            </a>
+          }
+        </div>
+
+        <hr class="tw-m-0 tw-h-0.5 tw-w-full tw-bg-gray-100" />
+
+        <div>
+          <a
+            class="ion-activatable tw-relative tw-flex tw-w-full tw-items-center tw-overflow-hidden tw-bg-transparent tw-py-4 tw-text-start tw-text-gray-100 tw-no-underline"
+          >
+            <ion-ripple-effect />
+            <ion-icon
+              class="tw-mx-4 tw-text-xl tw-text-gray-100"
+              name="person-outline"
+            />
+            <div class="tw-font-roboto tw-text-lg tw-font-normal">
+              View Profile
+            </div>
+          </a>
+
+          <a
+            class="ion-activatable tw-relative tw-flex tw-w-full tw-items-center tw-overflow-hidden tw-bg-transparent tw-py-4 tw-text-start tw-font-roboto tw-text-lg tw-font-normal tw-text-gray-100 tw-no-underline"
+            (click)="logout()"
+          >
+            <ion-ripple-effect />
+            <ion-icon
+              class="tw-text--gray-100 tw-mx-4 tw-text-xl"
+              name="log-out-outline"
+            />
+            <div class="tw-font-roboto tw-text-lg tw-font-normal">Logout</div>
+          </a>
+        </div>
+      </div>
+    }
+  </ion-content>
+</ion-menu>

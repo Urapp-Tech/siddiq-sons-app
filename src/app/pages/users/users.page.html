@@ -1,0 +1,44 @@
+<app-header name="Users" type="MENU" />
+<ion-content class="tw-ion-bg-gray-900">
+  <div
+    class="tw-m-4 tw-flex tw-w-fill-available tw-flex-row tw-justify-center tw-gap-x-2"
+  >
+    <ion-button
+      type="button"
+      [cn]="[
+        'tw-w-full tw-font-roboto tw-text-xs tw-font-bold tw-ion-bg-gray-300 tw-ion-text-gray-700 tw-ion-rounded-3xl tw-ion-px-5 tw-ion-py-3',
+        selectedTab === 'ADMIN_USERS' &&
+          'tw-ion-bg-gray-100 tw-ion-text-gray-900',
+      ]"
+      (click)="selectedTab = 'ADMIN_USERS'"
+    >
+      Admin Users
+    </ion-button>
+    <ion-button
+      class=""
+      type="button"
+      [cn]="[
+        'tw-w-full tw-font-roboto tw-text-xs tw-font-bold tw-ion-bg-gray-300 tw-ion-text-gray-700 tw-ion-rounded-3xl tw-ion-px-5 tw-ion-py-3',
+        selectedTab === 'EMPLOYEES' &&
+          'tw-ion-bg-gray-100 tw-ion-text-gray-900',
+      ]"
+      (click)="selectedTab = 'EMPLOYEES'"
+    >
+      Employees
+    </ion-button>
+  </div>
+
+  <ion-input
+    class="tw-mx-4 tw-min-h-10 tw-w-fill-available tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+    id="search"
+    name="search"
+    fill="outline"
+    placeholder="Search ..."
+  >
+    <ion-icon
+      class="tw-text-xl tw-ion-bg-gray-100"
+      name="search"
+      slot="start"
+    />
+  </ion-input>
+</ion-content>

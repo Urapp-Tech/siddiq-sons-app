@@ -1,0 +1,112 @@
+<ion-header class="ion-no-border tw-bg-gray-900 tw-shadow-md">
+  <div class="tw-flex tw-w-fill-available tw-justify-center tw-py-10">
+    <img class="tw-h-24" src="assets/images/siddiq-official-logo.png" alt="" />
+  </div>
+</ion-header>
+
+<ion-content class="tw-overflow-hidden tw-ion-bg-gray-900" [scrollY]="false">
+  <form
+    class="tw-mt-[12vh] tw-flex tw-w-fill-available tw-flex-col tw-items-center tw-gap-y-4 tw-px-6 tw-py-8 tw-shadow-md"
+    [formGroup]="loginForm"
+    (ngSubmit)="submit()"
+  >
+    <div class="tw-w-full">
+      <ion-input
+        class="tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-xl"
+        id="identifier"
+        name="identifier"
+        formControlName="identifier"
+        type="identifier"
+        fill="outline"
+        placeholder="Email / Phone"
+      >
+        <ion-icon
+          class="tw-text-xl tw-text-[#9098B1]"
+          name="mail-outline"
+          slot="start"
+        />
+      </ion-input>
+      <div
+        [cn]="[
+          'tw-invisible',
+          controlHasError(loginForm.controls.identifier) && 'tw-visible',
+        ]"
+      >
+        <div
+          class="tw-ml-2 tw-mt-0.5 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+        >
+          @if (loginForm.controls.identifier.errors; as identifierErrors) {
+            @if (identifierErrors['required']) {
+              <span> email or phone is required </span>
+            }
+            @if (
+              !identifierErrors['required'] && identifierErrors['emailOrPhone']
+            ) {
+              <span> email or phone is invalid </span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+    <div class="tw-w-full">
+      <ion-input
+        class="tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-xl"
+        id="password"
+        name="password"
+        formControlName="password"
+        fill="outline"
+        placeholder="Type Password"
+        [type]="passwordVisible ? 'text' : 'password'"
+      >
+        <ion-icon
+          class="tw-text-xl tw-text-[#9098B1]"
+          name="lock-closed"
+          slot="start"
+        />
+        <ion-button
+          aria-label="Show/hide"
+          fill="clear"
+          slot="end"
+          (click)="passwordVisible = !passwordVisible"
+        >
+          <ion-icon
+            class="tw-text-xl tw-text-[#9098B1]"
+            aria-hidden="true"
+            slot="icon-only"
+            [name]="passwordVisible ? 'eye' : 'eye-off'"
+          />
+        </ion-button>
+      </ion-input>
+      <div
+        [cn]="[
+          'tw-invisible',
+          controlHasError(loginForm.controls.password) && 'tw-visible',
+        ]"
+      >
+        <div
+          class="tw-ml-2 tw-mt-0.5 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+        >
+          @if (loginForm.controls.password.errors; as passwordErrors) {
+            @if (passwordErrors['required']) {
+              <span> password is required </span>
+            }
+            @if (passwordErrors['minlength']; as minlengthError) {
+              <span>
+                password must be at least
+                {{ minlengthError.requiredLength }} characters
+              </span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+    <ion-button
+      class="tw-w-full tw-capitalize tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-xl tw-ion-py-4"
+      type="submit"
+      expand="block"
+      [disabled]="loginForm.invalid && loginForm.touched"
+    >
+      Login
+    </ion-button>
+  </form>
+</ion-content>

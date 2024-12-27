@@ -1,0 +1,55 @@
+<ion-modal class="tw-ion-bg-transparent" [isOpen]="isOpen">
+  <ng-template>
+    <ion-content
+      class="-tw-z-50 tw-ion-bg-[rgb(0_0_0_/_0.5)]"
+      (click)="closeModal()"
+    >
+      <div
+        class="tw-mx-4 tw-flex tw-h-screen tw-w-fill-available tw-items-center"
+      >
+        <div
+          class="tw-w-full tw-rounded-xl tw-bg-gray-100 tw-py-4"
+          appClickStopPropagation
+        >
+          <form [formGroup]="addCabinForm" (ngSubmit)="submit()">
+            <div class="tw-mx-8 tw-mb-2 tw-flex tw-items-center">
+              <div
+                class="tw-font-roboto tw-text-xl tw-font-medium tw-text-[#3D3D3D]"
+              >
+                Add New Cabin
+              </div>
+            </div>
+
+            <ion-input
+              class="tw-mx-4 tw-min-h-10 tw-w-fill-available tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+              id="cabinName"
+              name="cabinName"
+              formControlName="cabinName"
+              fill="outline"
+              placeholder="Cabin Name / Number"
+            >
+            </ion-input>
+
+            <div
+              class="tw-my-4 tw-flex tw-items-center tw-justify-center tw-gap-x-4"
+            >
+              <ion-button
+                class="tw-w-32 tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-slate-100 tw-ion-border-width tw-ion-border-style-solid"
+                type="button"
+                (click)="closeModal()"
+              >
+                Cancel
+              </ion-button>
+              <ion-button
+                class="tw-w-32 tw-text-gray-100 tw-ion-bg-gray-900 tw-ion-border-color-slate-900 tw-ion-border-width tw-ion-border-style-solid"
+                type="submit"
+              >
+                Add
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
