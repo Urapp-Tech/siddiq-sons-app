@@ -1,8 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY } from 'rxjs';
 import { API_PATHS } from 'src/environments/API-PATHS';
-import { AddCabinResponse, GetCabinsResponse } from '../types/cabin.types';
+import {
+  AddCabinResponse,
+  AssignCabinResponse,
+  DeleteCabinResponse,
+  EditCabinResponse,
+  GetCabinsResponse,
+} from '../types/cabin.types';
 import { UserService } from './user.service';
 
 @Injectable({ providedIn: 'root' })
@@ -13,22 +18,36 @@ export class CabinService {
   ) {}
 
   getCabins(page = 0, size = 10, search = '') {
-    const { userData } = this.userService;
-    if (!userData) return EMPTY;
-    const { tenant, branch } = userData;
     return this.httpClient.get<GetCabinsResponse>(
-      API_PATHS.getCabins(tenant, branch, page, size, search)
+      API_PATHS.getCabins(page, size, search)
     );
   }
 
   addCabin(cabinNumber: string) {
-    const { userData } = this.userService;
-    if (!userData) return EMPTY;
-    const { tenant, branch } = userData;
     return this.httpClient.post<AddCabinResponse>(API_PATHS.addCabin(), {
-      tenant,
-      branch,
       cabinNumber,
+    });
+  }
+
+  editCabin(cabinId: string, cabinNumber: string) {
+    return this.httpClient.post<EditCabinResponse>(
+      API_PATHS.editCabin(cabinId),
+      {
+        cabinNumber,
+      }
+    );
+  }
+
+  deleteCabin(cabinId: string) {
+    return this.httpClient.post<DeleteCabinResponse>(
+      API_PATHS.deleteCabin(cabinId),
+      {}
+    );
+  }
+
+  assignCabin(payload: { cabin: string; employee: string }) {
+    return this.httpClient.post<AssignCabinResponse>(API_PATHS.assignCabin(), {
+      ...payload,
     });
   }
 }

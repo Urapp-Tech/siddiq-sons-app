@@ -11,12 +11,12 @@
           class="tw-w-full tw-rounded-xl tw-bg-gray-100 tw-py-4"
           appClickStopPropagation
         >
-          <form [formGroup]="addCabinForm" (ngSubmit)="submit()">
+          <form [formGroup]="editCabinForm" (ngSubmit)="submit()">
             <div class="tw-mx-8 tw-mb-2 tw-flex tw-items-center">
               <div
                 class="tw-font-roboto tw-text-xl tw-font-medium tw-text-[#3D3D3D]"
               >
-                Add New Cabin
+                Edit Cabin
               </div>
             </div>
 
@@ -34,17 +34,17 @@
               class="tw-my-4 tw-flex tw-items-center tw-justify-center tw-gap-x-4"
             >
               <ion-button
-                class="tw-w-32 tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-slate-100 tw-ion-border-width tw-ion-border-style-solid"
+                class="tw-w-32 tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
                 type="button"
                 (click)="closeModal()"
               >
                 Cancel
               </ion-button>
               <ion-button
-                class="tw-w-32 tw-text-gray-100 tw-ion-bg-gray-900 tw-ion-border-color-slate-900 tw-ion-border-width tw-ion-border-style-solid"
+                class="tw-w-32 tw-text-gray-100 tw-ion-bg-gray-900 tw-ion-border-color-gray-900 tw-ion-border-width tw-ion-border-style-solid"
                 type="submit"
               >
-                Add
+                Edit
               </ion-button>
             </div>
           </form>

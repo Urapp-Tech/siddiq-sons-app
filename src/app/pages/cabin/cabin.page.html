@@ -1,0 +1,52 @@
+<app-header type="BACK" defaultHref="/cabins" [name]="title" />
+
+<ion-content class="tw-ion-bg-gray-900">
+  <div class="tw-mx-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Name
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ cabin.cabinNumber }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Status
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ cabin.isActive ? 'Active' : 'Inactive' }}
+      </div>
+    </div>
+  </div>
+
+  <ion-button
+    class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(7vw+7vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-blue-900 tw-ion-rounded-full"
+    type="button"
+    (click)="isEditCabinModalOpen = true"
+  >
+    <ion-icon name="create-outline" slot="icon-only" />
+  </ion-button>
+
+  <ion-button
+    class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(1vw+1vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-red-900 tw-ion-rounded-full"
+    type="button"
+    (click)="isConfirmDeleteCabinModalOpen = true"
+  >
+    <ion-icon name="trash-outline" slot="icon-only" />
+  </ion-button>
+
+  <app-cabin-edit
+    [isOpen]="isEditCabinModalOpen"
+    (backdropClicked)="isEditCabinModalOpen = false"
+    (modelSuccess)="successEditCabinModal($event)"
+  />
+
+  <app-cabin-confirm-delete
+    [isOpen]="isConfirmDeleteCabinModalOpen"
+    [cabin]="cabin"
+    (backdropClicked)="isConfirmDeleteCabinModalOpen = false"
+    (modelSuccess)="successConfirmDeleteCabinModal($event)"
+  />
+</ion-content>

@@ -1,0 +1,92 @@
+<app-header type="BACK" defaultHref="/users" [name]="title" />
+<ion-content class="tw-ion-bg-gray-900">
+  <div class="tw-mx-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Name
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ employee.name }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Email
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ !employee.email ? 'N/A' : employee.email }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Phone
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ employee.phone }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Address
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ !employee.address ? 'N/A' : employee.address }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Assigned Cabin
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ !employee.cabin ? 'N/A' : employee.cabinName }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Status
+      </div>
+      <div
+        class="tw-max-w-44 tw-font-roboto tw-text-lg tw-font-medium tw-leading-tight tw-text-gray-100"
+      >
+        {{ employee.isActive ? 'Active' : 'Inactive' }}
+      </div>
+    </div>
+  </div>
+
+  <ion-button
+    class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(1vw+1vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-gray-900 tw-ion-rounded-full"
+    type="button"
+    (click)="isAssignCabinModalOpen = true"
+  >
+    <ion-icon name="person-add-outline" slot="icon-only" />
+  </ion-button>
+
+  <app-cabin-assign
+    [isOpen]="isAssignCabinModalOpen"
+    [employee]="employee"
+    (backdropClicked)="isAssignCabinModalOpen = false"
+    (modelSuccess)="successAssignCabinModal($event)"
+  />
+
+  <app-cabin-confirm-reassign
+    [isOpen]="isConfirmReassignCabinModalOpen"
+    [employee]="employee"
+    (backdropClicked)="isConfirmReassignCabinModalOpen = false"
+    (modelSuccess)="successConfirmReassignCabinModal($event)"
+  />
+</ion-content>

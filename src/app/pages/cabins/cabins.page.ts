@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { CabinAddModal } from 'src/app/modals/cabin-add/cabin-add.modal';
 import { CabinService } from 'src/app/services/cabin.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -11,20 +13,20 @@ import {
 } from 'src/app/types/cabin.types';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 import { SharedModule } from 'src/modules/shared.module';
-import { AddCabinModal } from '../../modals/add-cabin/add-cabin.modal';
 
 @Component({
   selector: 'app-cabins',
   templateUrl: 'cabins.page.html',
   styleUrls: ['cabins.page.scss'],
   standalone: true,
-  imports: [IonicSharedModule, HeaderComponent, SharedModule, AddCabinModal],
+  imports: [IonicSharedModule, HeaderComponent, SharedModule, CabinAddModal],
 })
 export class CabinsPage {
   constructor(
     private readonly cabinService: CabinService,
     private readonly loadingService: LoadingService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly router: Router
   ) {}
 
   cabins: Array<Cabin> = [];
@@ -55,10 +57,6 @@ export class CabinsPage {
     });
   }
 
-  closeAddCabinModal() {
-    this.isAddCabinModalOpen = false;
-  }
-
   async successAddCabinModal(data: { cabinName: string }) {
     this.isAddCabinModalOpen = false;
     await this.addCabin(data.cabinName);
@@ -83,5 +81,14 @@ export class CabinsPage {
       next: handleResponse,
       error: handleError,
     });
+  }
+
+  async navigateDetailsPage(cabin: Cabin) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: cabin,
+      },
+    };
+    this.router.navigate([`/cabin`], navigationExtras);
   }
 }

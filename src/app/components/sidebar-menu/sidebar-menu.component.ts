@@ -78,7 +78,6 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   }
 
   async logout() {
-    this.userService.userData = null;
-    await this.navController.navigateRoot('/login');
+    this.userService.logout();
   }
 }

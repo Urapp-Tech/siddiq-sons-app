@@ -1,0 +1,135 @@
+<app-header name="Add Admin User" type="BACK" defaultHref="/users" />
+<ion-content class="tw-ion-bg-gray-900">
+  <div class="tw-relative tw-mt-3 tw-p-4">
+    <div class="tw-z-20 tw-flex tw-flex-col tw-gap-y-4">
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            First Name
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          type="text"
+          fill="outline"
+          placeholder="John"
+        >
+        </ion-input>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Last Name
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          type="text"
+          fill="outline"
+          placeholder="Doe"
+        >
+        </ion-input>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Email
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          type="text"
+          fill="outline"
+          placeholder="JohnDoe1995@gmail.com"
+        >
+        </ion-input>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Password
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="password"
+          name="password"
+          formControlName="password"
+          fill="outline"
+          placeholder="Type Password"
+          placeholder="********"
+          [type]="passwordVisible ? 'text' : 'password'"
+        >
+          <ion-button
+            type="button"
+            aria-label="Show/hide"
+            fill="clear"
+            slot="end"
+            (click)="passwordVisible = !passwordVisible"
+          >
+            <ion-icon
+              class="tw-text-xl tw-text-gray-900"
+              aria-hidden="true"
+              slot="icon-only"
+              [name]="passwordVisible ? 'eye' : 'eye-off'"
+            />
+          </ion-button>
+        </ion-input>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Address
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          type="text"
+          fill="outline"
+          placeholder="Abc Street, XYZ Block."
+        >
+        </ion-input>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Phone
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          type="text"
+          fill="outline"
+          placeholder="03002345678"
+        >
+        </ion-input>
+      </div>
+    </div>
+
+    <div class="tw-h-20"></div>
+
+    <ion-button
+      class="tw-w-fill-available tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
+      type="submit"
+    >
+      Submit
+    </ion-button>
+  </div>
+</ion-content>

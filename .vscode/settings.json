@@ -21,7 +21,8 @@
     "ionicons",
     "siddiq",
     "styleext",
-    "tailwindcss"
+    "tailwindcss",
+    "titlecase"
   ],
   "css.customData": [".vscode/tailwind.json"]
 }

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { NavController } from '@ionic/angular/standalone';
 import { BehaviorSubject } from 'rxjs';
 import { UserData } from '../types/login.types';
 import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private readonly storageService: StorageService) {}
+  constructor(
+    private readonly storageService: StorageService,
+    private readonly navController: NavController
+  ) {}
 
   private _userData = this.storageService.getItem<UserData>('USER_DATA');
 
@@ -24,5 +28,10 @@ export class UserService {
     this._userData = userData;
     this.storageService.setItem('USER_DATA', userData);
     this._userDataChanged.next(Date.now());
+  }
+
+  logout() {
+    this.userData = null;
+    this.navController.navigateRoot('/login');
   }
 }

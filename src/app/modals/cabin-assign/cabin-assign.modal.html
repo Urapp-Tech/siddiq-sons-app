@@ -1,0 +1,75 @@
+<ion-modal class="tw-ion-bg-transparent" [isOpen]="isOpen">
+  <ng-template>
+    <ion-content
+      class="-tw-z-50 tw-ion-bg-[rgb(0_0_0_/_0.5)]"
+      (click)="closeModal()"
+    >
+      <div
+        class="tw-mx-4 tw-flex tw-h-screen tw-w-fill-available tw-items-center"
+      >
+        <div
+          class="tw-w-full tw-rounded-xl tw-bg-gray-100 tw-py-4"
+          appClickStopPropagation
+        >
+          <div class="tw-mx-8 tw-mb-2 tw-flex tw-items-center">
+            <div
+              class="tw-font-roboto tw-text-xl tw-font-medium tw-text-[#3D3D3D]"
+            >
+              Assign Cabin To {{ employee.name }}
+            </div>
+          </div>
+
+          <div
+            class="tw-my-4 tw-flex tw-max-h-80 tw-flex-col tw-overflow-y-auto"
+          >
+            @for (cabin of cabins; track cabin.id) {
+              <div
+                class="ion-activatable tw-relative tw-flex tw-items-center tw-px-8 tw-py-2"
+                (click)="selectedCabin = cabin"
+              >
+                <ion-ripple-effect />
+                <div
+                  [cn]="[
+                    'tw-mr-4 tw-flex tw-size-4 tw-items-center tw-justify-center tw-rounded-full tw-bg-transparent tw-outline tw-outline-2 tw-outline-[#DADADA]',
+                    selectedCabin &&
+                      cabin.id === selectedCabin.id &&
+                      'tw-outline-gray-900',
+                  ]"
+                >
+                  @if (selectedCabin && cabin.id === selectedCabin.id) {
+                    <div class="tw-size-2 tw-rounded-full tw-bg-gray-900"></div>
+                  }
+                </div>
+                <div
+                  class="tw-font-roboto tw-text-base tw-font-medium tw-text-gray-900"
+                >
+                  {{ cabin.cabinNumber }}
+                </div>
+              </div>
+            }
+          </div>
+
+          <div
+            class="tw-my-4 tw-flex tw-items-center tw-justify-center tw-gap-x-4"
+          >
+            <ion-button
+              class="tw-w-32 tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
+              type="button"
+              (click)="closeModal()"
+            >
+              Cancel
+            </ion-button>
+            <ion-button
+              class="tw-w-32 tw-text-gray-100 tw-ion-bg-gray-900 tw-ion-border-color-gray-900 tw-ion-border-width tw-ion-border-style-solid"
+              type="button"
+              [disabled]="!selectedCabin"
+              (click)="submit()"
+            >
+              Assign
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

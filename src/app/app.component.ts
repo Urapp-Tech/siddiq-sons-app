@@ -43,6 +43,7 @@ import {
   openOutline,
   peopleOutline,
   person,
+  personAddOutline,
   personCircle,
   personOutline,
   phonePortraitOutline,
@@ -54,6 +55,7 @@ import {
   stopwatchOutline,
   timerOutline,
   trash,
+  trashOutline,
   triangle,
 } from 'ionicons/icons';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
@@ -109,6 +111,7 @@ export class AppComponent {
       openOutline,
       peopleOutline,
       person,
+      personAddOutline,
       personCircle,
       personOutline,
       phonePortraitOutline,
@@ -120,6 +123,7 @@ export class AppComponent {
       stopwatchOutline,
       timerOutline,
       trash,
+      trashOutline,
       triangle,
     });
   }

@@ -4,13 +4,13 @@ import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 import { SharedModule } from 'src/modules/shared.module';
 
 @Component({
-  selector: 'app-add-cabin',
-  templateUrl: 'add-cabin.modal.html',
-  styleUrls: ['add-cabin.modal.scss'],
+  selector: 'app-cabin-add',
+  templateUrl: 'cabin-add.modal.html',
+  styleUrls: ['cabin-add.modal.scss'],
   standalone: true,
   imports: [IonicSharedModule, SharedModule],
 })
-export class AddCabinModal {
+export class CabinAddModal {
   constructor(private readonly formBuilder: NonNullableFormBuilder) {}
 
   @Input({ required: true }) isOpen: boolean = false;

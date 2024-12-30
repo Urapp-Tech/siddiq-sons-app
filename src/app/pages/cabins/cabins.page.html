@@ -1,6 +1,6 @@
 <app-header name="Cabins" type="MENU" />
 <ion-content class="tw-ion-bg-gray-900">
-  <ion-input
+  <!--  <ion-input
     class="tw-mx-4 tw-min-h-10 tw-w-fill-available tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
     id="search"
     name="search"
@@ -12,12 +12,13 @@
       name="search"
       slot="start"
     />
-  </ion-input>
+  </ion-input> -->
 
   <div class="tw-m-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
     @for (cabin of cabins; track cabin.id) {
       <div
         class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+        (click)="navigateDetailsPage(cabin)"
       >
         <div class="tw-grow">
           <div
@@ -31,7 +32,7 @@
         </div>
 
         <ion-toggle
-          class="tw-ion-track-bg-gray-400 tw-ion-track-bg-checked-gray-600 tw-ion-handle-bg-gray-900 tw-ion-handle-bg-checked-gray-900"
+          class="tw-ion-handle-bg-checked-gray-900 tw-ion-handle-bg-gray-900 tw-ion-track-bg-checked-gray-600 tw-ion-track-bg-gray-400"
           [checked]="cabin.isActive"
           [disabled]="true"
         >
@@ -44,14 +45,15 @@
 
   <ion-button
     class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(1vw+1vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-gray-900 tw-ion-rounded-full"
+    type="button"
     (click)="isAddCabinModalOpen = true"
   >
     <ion-icon name="add" slot="icon-only" />
   </ion-button>
 
-  <app-add-cabin
+  <app-cabin-add
     [isOpen]="isAddCabinModalOpen"
-    (backdropClicked)="closeAddCabinModal()"
+    (backdropClicked)="isAddCabinModalOpen = false"
     (modelSuccess)="successAddCabinModal($event)"
   />
 </ion-content>

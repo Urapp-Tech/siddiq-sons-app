@@ -15,7 +15,6 @@
       Admin Users
     </ion-button>
     <ion-button
-      class=""
       type="button"
       [cn]="[
         'tw-w-full tw-font-roboto tw-text-xs tw-font-bold tw-ion-bg-gray-300 tw-ion-text-gray-700 tw-ion-rounded-3xl tw-ion-px-5 tw-ion-py-3',
@@ -28,7 +27,7 @@
     </ion-button>
   </div>
 
-  <ion-input
+  <!--  <ion-input
     class="tw-mx-4 tw-min-h-10 tw-w-fill-available tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
     id="search"
     name="search"
@@ -40,5 +39,22 @@
       name="search"
       slot="start"
     />
-  </ion-input>
+  </ion-input> -->
+
+  @switch (selectedTab) {
+    @case ('ADMIN_USERS') {
+      <app-admin-users [backOfficeUsersData]="backOfficeUsersData" />
+    }
+    @case ('EMPLOYEES') {
+      <app-employees [employeesData]="employeesData" />
+    }
+  }
+
+  <ion-button
+    class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(1vw+1vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-gray-900 tw-ion-rounded-full"
+    type="button"
+    (click)="navigateToAddUser()"
+  >
+    <ion-icon name="add" slot="icon-only" />
+  </ion-button>
 </ion-content>

@@ -1,4 +1,8 @@
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, RouteReuseStrategy } from '@angular/router';
 import {
@@ -6,13 +10,19 @@ import {
   provideIonicAngular,
 } from '@ionic/angular/standalone';
 import { AppComponent } from './app/app.component';
+import { AuthenticationInterceptor } from './app/interceptors/authentication.interceptor';
 import { routes } from './app/routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideHttpClient(),
     provideIonicAngular({ mode: 'md' }),
     provideRouter(routes),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
   ],
 });

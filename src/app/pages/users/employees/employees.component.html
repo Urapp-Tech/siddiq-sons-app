@@ -1,8 +1,8 @@
 <div class="tw-m-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
-  @for (backOfficeUser of backOfficeUsersData.items; track backOfficeUser.id) {
+  @for (employee of employeesData.items; track employee.id) {
     <div
       class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
-      (click)="navigateDetailsPage(backOfficeUser)"
+      (click)="navigateDetailsPage(employee)"
     >
       <div class="tw-grow">
         <div
@@ -11,12 +11,12 @@
           Name
         </div>
         <div class="tw-font-roboto tw-text-lg tw-font-bold tw-text-gray-900">
-          {{ backOfficeUser.firstName }} {{ backOfficeUser.lastName }}
+          {{ employee.name }}
         </div>
         <div
           class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900"
         >
-          {{ backOfficeUser.email }}
+          {{ !employee.email ? 'N/A' : employee.email }}
         </div>
       </div>
 

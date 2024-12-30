@@ -1,0 +1,49 @@
+<app-header type="BACK" defaultHref="/users" [name]="title" />
+<ion-content class="tw-ion-bg-gray-900">
+  <div class="tw-mx-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Name
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ backOfficeUser.firstName }} {{ backOfficeUser.lastName }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Email
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ backOfficeUser.email }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Phone
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ backOfficeUser.phone }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Address
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ !backOfficeUser.address ? 'N/A' : backOfficeUser.address }}
+      </div>
+    </div>
+
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <div class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-100">
+        Status
+      </div>
+      <div class="tw-font-roboto tw-text-lg tw-font-medium tw-text-gray-100">
+        {{ backOfficeUser.isActive ? 'Active' : 'Inactive' }}
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -3,21 +3,21 @@
     <ion-buttons>
       @if (type === 'MENU') {
         <ion-buttons slot="start">
-          <ion-button (click)="toggleMenu()">
+          <ion-button type="button" (click)="toggleMenu()">
             <ion-icon class="tw-text-2xl" name="menu" slot="icon-only" />
           </ion-button>
         </ion-buttons>
       }
       @if (type === 'BACK') {
         <ion-buttons slot="start">
-          <ion-button (click)="goBack(defaultHref)">
+          <ion-button type="button" (click)="goBack(defaultHref)">
             <ion-icon class="tw-text-2xl" name="arrow-back" slot="icon-only" />
           </ion-button>
         </ion-buttons>
       }
     </ion-buttons>
     <div class="tw-grow tw-font-roboto tw-text-xl tw-font-medium">
-      {{ name }}
+      {{ name | titlecase }}
     </div>
   </div>
 </ion-header>
