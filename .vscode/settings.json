@@ -20,9 +20,11 @@
     "haptics",
     "ionicons",
     "siddiq",
+    "siddiqsons",
     "styleext",
     "tailwindcss",
-    "titlecase"
+    "titlecase",
+    "urapptech"
   ],
   "css.customData": [".vscode/tailwind.json"]
 }

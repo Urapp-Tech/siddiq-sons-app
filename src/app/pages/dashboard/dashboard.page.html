@@ -1,8 +1,60 @@
 <app-header name="Dashboard" type="MENU" />
 <ion-content class="tw-ion-bg-gray-900">
-  <div
-    class="tw-flex tw-h-full tw-w-fill-available tw-items-center tw-justify-center tw-text-center tw-font-roboto tw-text-5xl tw-font-normal tw-text-gray-100"
-  >
-    Work In Progress
+  <div class="tw-m-4 tw-flex tw-w-fill-available tw-flex-col tw-gap-y-4">
+    @if (dashboardActivityData) {
+      <div
+        class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+      >
+        <div class="tw-grow">
+          <div
+            class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900"
+          >
+            Active Cabins
+          </div>
+          <div class="tw-font-roboto tw-text-lg tw-font-bold tw-text-gray-900">
+            {{ dashboardActivityData.totalActiveCabins }}
+          </div>
+        </div>
+
+        <ion-icon
+          class="tw-text-3xl tw-text-gray-900"
+          name="phone-portrait-outline"
+        />
+      </div>
+
+      <div
+        class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+      >
+        <div class="tw-grow">
+          <div
+            class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900"
+          >
+            Active Assigned Cabins
+          </div>
+          <div class="tw-font-roboto tw-text-lg tw-font-bold tw-text-gray-900">
+            {{ dashboardActivityData.totalActiveAssignedCabins }}
+          </div>
+        </div>
+
+        <ion-icon class="tw-text-3xl tw-text-gray-900" name="id-card-outline" />
+      </div>
+
+      <div
+        class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+      >
+        <div class="tw-grow">
+          <div
+            class="tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900"
+          >
+            Active Employees
+          </div>
+          <div class="tw-font-roboto tw-text-lg tw-font-bold tw-text-gray-900">
+            {{ dashboardActivityData.totalActiveEmployees }}
+          </div>
+        </div>
+
+        <ion-icon class="tw-text-3xl tw-text-gray-900" name="people-outline" />
+      </div>
+    }
   </div>
 </ion-content>

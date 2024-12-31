@@ -60,6 +60,12 @@ export class EmployeePage implements OnInit {
     this.title = `${this.employee.name}`;
   }
 
+  navigateToCabinHistory() {
+    this.router.navigate(['/employee-cabin-history'], {
+      state: { data: this.employee },
+    });
+  }
+
   async successAssignCabinModal(cabin: Cabin) {
     this.isAssignCabinModalOpen = false;
     this.selectedCabin = cabin;

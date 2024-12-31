@@ -1,12 +1,11 @@
 import {
   HttpErrorResponse,
-  HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, catchError, map, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Injectable()
@@ -19,20 +18,22 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       const modifiedRequest = this.attachToken(request, userData.token);
       return next.handle(modifiedRequest).pipe(
         catchError((error: HttpErrorResponse) => {
-          if (
-            error.error.statusCode === 500 &&
-            (error.error.message.includes(`(reading 'tenantId')`) ||
-              error.error.message.includes(`(reading 'tenant')`))
-          ) {
+          if (error.error.statusCode === 401) {
             this.userService.logout();
-            return EMPTY;
+            return throwError(() => new Error('Unauthorized'));
           }
           return throwError(() => error);
-        }),
-        map((event: HttpEvent<any>) => event)
+        })
       );
     }
     return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.error.statusCode === 401) {
+          this.userService.logout();
+          return throwError(() => new Error('Unauthorized'));
+        }
+        return throwError(() => error);
+      }),
       tap((response: any) => {
         if (
           response.status === 200 &&

@@ -1,0 +1,53 @@
+<app-header type="BACK" defaultHref="/users" [name]="title" />
+<ion-content class="tw-ion-bg-gray-900">
+  <div class="tw-flex tw-items-center tw-justify-between">
+    <div class="tw-basis-1/2">
+      <ion-input
+        id="fromDate"
+        name="fromDate"
+        formControlName="fromDate"
+        fill="solid"
+        placeholder="DD/MM/YYYY"
+        readonly
+        [value]="fromDateValue | date: 'dd/MM/yyyy'"
+      >
+      </ion-input>
+      <ion-buttons class="ion-no-margin" slot="end">
+        <ion-button type="button" fill="clear">
+          <ion-icon
+            class="text-[#1d4675]"
+            name="calendar-outline"
+            slot="icon-only"
+          >
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-popover
+        #fromDatePicker
+        trigger="from-date-picker-trigger"
+        triggerAction="click"
+        side="bottom"
+        alignment="end"
+        animated="true"
+      >
+        <ng-template>
+          <ion-datetime
+            #fromDate
+            id="fromDate"
+            name="fromDate"
+            presentation="date"
+            [min]="fromMinimumDate"
+            (ionChange)="fromDateChanged(fromDatePicker, fromDate)"
+          >
+            <ion-buttons slot="buttons">
+              <ion-button color="primary" (click)="fromDate.confirm()">
+                Done
+              </ion-button>
+            </ion-buttons>
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </div>
+    <div class="tw-basis-1/2"></div>
+  </div>
+</ion-content>

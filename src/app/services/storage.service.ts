@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 type Key = 'USER_DATA';
 
 function addKeyPrefix(key: string) {
-  const prefix = 'SALON_APP';
+  const prefix = 'SIDDIQ_SONS_APP';
   return `${prefix}_${key}`;
 }
 

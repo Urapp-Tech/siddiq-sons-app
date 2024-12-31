@@ -5,14 +5,10 @@ import {
   GetBackOfficeUsersResponse,
   GetEmployeesResponse,
 } from '../types/users.types';
-import { UserService } from './user.service';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  constructor(
-    private readonly httpClient: HttpClient,
-    private readonly userService: UserService
-  ) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   getBackOfficeUsers(page = 0, size = 10, search = '') {
     return this.httpClient.get<GetBackOfficeUsersResponse>(

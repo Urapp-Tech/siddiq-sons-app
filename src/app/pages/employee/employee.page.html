@@ -76,6 +76,14 @@
     <ion-icon name="person-add-outline" slot="icon-only" />
   </ion-button>
 
+  <ion-button
+    class="tw-fixed tw-bottom-[calc(1vw+1vh)] tw-right-[calc(7vw+7vh)] tw-text-2xl tw-ion-bg-gray-100 tw-ion-text-gray-900 tw-ion-rounded-full"
+    type="button"
+    (click)="navigateToCabinHistory()"
+  >
+    <ion-icon name="time-outline" slot="icon-only" />
+  </ion-button>
+
   <app-cabin-assign
     [isOpen]="isAssignCabinModalOpen"
     [employee]="employee"

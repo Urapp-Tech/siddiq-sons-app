@@ -8,14 +8,10 @@ import {
   EditCabinResponse,
   GetCabinsResponse,
 } from '../types/cabin.types';
-import { UserService } from './user.service';
 
 @Injectable({ providedIn: 'root' })
 export class CabinService {
-  constructor(
-    private readonly httpClient: HttpClient,
-    private readonly userService: UserService
-  ) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   getCabins(page = 0, size = 10, search = '') {
     return this.httpClient.get<GetCabinsResponse>(

@@ -9,6 +9,14 @@ export const API_PATHS = {
     return url.toString();
   },
 
+  getDashboardActivity() {
+    const url = new URL(
+      `/api/v1/admin/dashboard/activity`,
+      environment.baseURL
+    );
+    return url.toString();
+  },
+
   getCabins(page = 0, size = 10, search = '') {
     const url = new URL(`/api/v1/admin/cabin/list`, environment.baseURL);
     url.searchParams.append('page', page.toString());
