@@ -60,3 +60,26 @@ export type Employee = {
   cabin: string | null;
   cabinName: string | null;
 };
+
+export type GetEmployeeCabinHistoryResponse = {
+  success: boolean;
+  code: number;
+  message: string;
+  data: EmployeeCabinHistoryData;
+};
+
+export type EmployeeCabinHistoryData = {
+  data: EmployeeCabinHistoryDetails;
+  total: number;
+};
+
+export type EmployeeCabinHistoryDetails = {
+  details: Array<EmployeeCabinHistoryDetail>;
+  totalPresentTime: string;
+  totalAbsentTime: string;
+};
+
+export type EmployeeCabinHistoryDetail = {
+  time: string;
+  identifier: boolean;
+};

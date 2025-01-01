@@ -69,4 +69,22 @@ export const API_PATHS = {
     if (search) url.searchParams.append('search', search.toString());
     return url.toString();
   },
+
+  getEmployeeCabinHistory(
+    cabinId: string,
+    employeeId: string,
+    startDate: string,
+    endDate: string,
+    page = 0,
+    size = 10
+  ) {
+    const url = new URL(`/api/v1/admin/cabin/history`, environment.baseURL);
+    url.searchParams.append('cabin', cabinId);
+    url.searchParams.append('employee', employeeId);
+    url.searchParams.append('startDate', startDate);
+    url.searchParams.append('endDate', endDate);
+    url.searchParams.append('page', page.toString());
+    url.searchParams.append('size', size.toString());
+    return url.toString();
+  },
 };

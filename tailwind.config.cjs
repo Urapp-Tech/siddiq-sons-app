@@ -59,6 +59,15 @@ module.exports = {
           'ion-track-bg-checked': (value) => ({
             '--track-background-checked': value,
           }),
+          'ion-highlight-color-focused': (value) => ({
+            '--highlight-color-focused': value,
+          }),
+          'ion-highlight-color-invalid': (value) => ({
+            '--highlight-color-invalid': value,
+          }),
+          'ion-highlight-color-valid': (value) => ({
+            '--highlight-color-valid': value,
+          }),
         },
         { values: flattenColorPalette(theme('colors')) }
       );

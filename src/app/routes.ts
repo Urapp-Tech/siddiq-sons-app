@@ -34,13 +34,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/employee/employee.page').then((c) => c.EmployeePage),
   },
-  /*   {
+  {
     path: 'employee-cabin-history',
     loadComponent: () =>
       import('./pages/employee-cabin-history/employee-cabin-history.page').then(
         (c) => c.EmployeeCabinHistoryPage
       ),
-  }, */
+  },
   {
     path: 'employee-add',
     loadComponent: () =>

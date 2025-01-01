@@ -2,9 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { BackOfficeUserService } from 'src/app/services/back-office-user.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
-import { UsersService } from 'src/app/services/users.service';
 import {
   BackOfficeUser,
   Employee,
@@ -35,7 +36,8 @@ export class UsersPage {
   constructor(
     private readonly loadingService: LoadingService,
     private readonly toastService: ToastService,
-    private readonly usersService: UsersService,
+    private readonly backOfficeUserService: BackOfficeUserService,
+    private readonly employeeService: EmployeeService,
     private readonly navController: NavController
   ) {}
 
@@ -76,10 +78,12 @@ export class UsersPage {
       await this.loadingService.hide();
       await this.toastService.show(error.message);
     };
-    this.usersService.getBackOfficeUsers(page, size, search).subscribe({
-      next: handleResponse,
-      error: handleError,
-    });
+    this.backOfficeUserService
+      .getBackOfficeUsers(page, size, search)
+      .subscribe({
+        next: handleResponse,
+        error: handleError,
+      });
   }
 
   async getEmployees(page = 0, size = 10, search = '') {
@@ -96,7 +100,7 @@ export class UsersPage {
       await this.loadingService.hide();
       await this.toastService.show(error.message);
     };
-    this.usersService.getEmployees(page, size, search).subscribe({
+    this.employeeService.getEmployees(page, size, search).subscribe({
       next: handleResponse,
       error: handleError,
     });

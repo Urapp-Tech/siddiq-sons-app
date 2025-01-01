@@ -1,0 +1,63 @@
+<section class="tw-w-fill-available" [id]="'custom-select-' + name">
+  <button
+    class="ion-activatable tw-relative tw-flex tw-min-h-12 tw-w-full tw-items-center tw-justify-between tw-overflow-hidden tw-rounded-md tw-bg-gray-100 tw-p-3 tw-text-gray-900"
+    #searchButton
+    [id]="'custom-select-' + name + '-trigger'"
+  >
+    <ion-ripple-effect></ion-ripple-effect>
+    <div class="tw-font-roboto tw-text-sm tw-font-medium">
+      {{ selectedDisplayText }}
+    </div>
+    <ion-icon name="chevron-down"></ion-icon>
+  </button>
+
+  <ion-popover
+    #customSelectPopover
+    [ngStyle]="{ '--min-width': searchButton.clientWidth + 'px' }"
+    [triggerAction]="'custom-select-' + name"
+    [trigger]="'custom-select-' + name + '-trigger'"
+  >
+    <ng-template>
+      <ion-content>
+        <div class="tw-px-2 tw-pt-2">
+          <ion-input
+            class="tw-min-h-10 tw-ion-highlight-color-valid-gray-900 tw-ion-pr-0 tw-ion-py-0"
+            type="text"
+            size="sm"
+            fill="outline"
+            [(ngModel)]="search"
+            [debounce]="250"
+          >
+            <ion-icon name="search" slot="start" />
+          </ion-input>
+        </div>
+        <ion-content
+          class="tw-h-[calc(100%-2vh)] tw-w-fill-available tw-overflow-y-scroll tw-ion-px-2 tw-ion-py-1"
+          [scrollY]="true"
+        >
+          @for (item of getFilteredItems(); track item[compareProperty]) {
+            <button
+              class="ion-activatable tw-relative tw-my-2 tw-flex tw-w-full tw-items-center tw-overflow-hidden tw-rounded-md tw-bg-gray-100 tw-p-2 tw-text-gray-900"
+              (click)="selectItem(item, customSelectPopover)"
+            >
+              <ion-ripple-effect></ion-ripple-effect>
+              @if (isSameItem(item)) {
+                <ion-icon
+                  class="tw-mr-2 tw-text-xl"
+                  name="checkmark"
+                ></ion-icon>
+              }
+              <div
+                class="tw-grow tw-text-start tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-900"
+              >
+                {{ getDisplayText(item) }}
+              </div>
+            </button>
+          } @empty {
+            <div class="tw-p-2">No Item Available</div>
+          }
+        </ion-content>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</section>

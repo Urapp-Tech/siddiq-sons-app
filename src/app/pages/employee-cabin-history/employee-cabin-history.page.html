@@ -1,30 +1,34 @@
 <app-header type="BACK" defaultHref="/users" [name]="title" />
 <ion-content class="tw-ion-bg-gray-900">
-  <div class="tw-flex tw-items-center tw-justify-between">
+  <div
+    class="tw-mx-4 tw-flex tw-w-fill-available tw-flex-wrap tw-items-center tw-justify-between"
+  >
     <div class="tw-basis-1/2">
-      <ion-input
-        id="fromDate"
-        name="fromDate"
-        formControlName="fromDate"
-        fill="solid"
+      <ion-button
+        class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+        id="start-date-picker-trigger"
+        name="startDate"
+        type="text"
+        expand="block"
         placeholder="DD/MM/YYYY"
         readonly
-        [value]="fromDateValue | date: 'dd/MM/yyyy'"
       >
-      </ion-input>
-      <ion-buttons class="ion-no-margin" slot="end">
-        <ion-button type="button" fill="clear">
-          <ion-icon
-            class="text-[#1d4675]"
-            name="calendar-outline"
-            slot="icon-only"
-          >
-          </ion-icon>
-        </ion-button>
-      </ion-buttons>
+        {{ startDateValue | date: 'dd/MM/yyyy' }}
+        <ion-buttons class="ion-no-margin" slot="end">
+          <ion-button type="button" fill="clear">
+            <ion-icon
+              class="tw-text-gray-900"
+              name="calendar-outline"
+              slot="icon-only"
+            >
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-button>
+
       <ion-popover
-        #fromDatePicker
-        trigger="from-date-picker-trigger"
+        #startDatePicker
+        trigger="start-date-picker-trigger"
         triggerAction="click"
         side="bottom"
         alignment="end"
@@ -32,15 +36,16 @@
       >
         <ng-template>
           <ion-datetime
-            #fromDate
-            id="fromDate"
-            name="fromDate"
+            #startDate
+            id="startDate"
+            name="startDate"
             presentation="date"
-            [min]="fromMinimumDate"
-            (ionChange)="fromDateChanged(fromDatePicker, fromDate)"
+            [min]="startMinimumDate"
+            [max]="endDateValue"
+            (ionChange)="startDateChanged(startDatePicker, startDate)"
           >
             <ion-buttons slot="buttons">
-              <ion-button color="primary" (click)="fromDate.confirm()">
+              <ion-button color="primary" (click)="startDate.confirm()">
                 Done
               </ion-button>
             </ion-buttons>
@@ -48,6 +53,124 @@
         </ng-template>
       </ion-popover>
     </div>
-    <div class="tw-basis-1/2"></div>
+    <div class="tw-basis-1/2">
+      <ion-button
+        class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+        id="end-date-picker-trigger"
+        name="endDate"
+        type="text"
+        expand="block"
+        placeholder="DD/MM/YYYY"
+        readonly
+      >
+        {{ endDateValue | date: 'dd/MM/yyyy' }}
+        <ion-buttons class="ion-no-margin" slot="end">
+          <ion-button type="button" fill="clear">
+            <ion-icon
+              class="tw-text-gray-900"
+              name="calendar-outline"
+              slot="icon-only"
+            >
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-button>
+
+      <ion-popover
+        #endDatePicker
+        trigger="end-date-picker-trigger"
+        triggerAction="click"
+        side="bottom"
+        alignment="end"
+        animated="true"
+      >
+        <ng-template>
+          <ion-datetime
+            #endDate
+            id="endDate"
+            name="endDate"
+            presentation="date"
+            [min]="endMinimumDate"
+            (ionChange)="endDateChanged(endDatePicker, endDate)"
+          >
+            <ion-buttons slot="buttons">
+              <ion-button color="primary" (click)="endDate.confirm()">
+                Done
+              </ion-button>
+            </ion-buttons>
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </div>
+    <div class="tw-mx-0.5 tw-basis-full">
+      <app-custom-select
+        class="tw-grow"
+        name="Cabin"
+        displayProperty="cabinNumber"
+        compareProperty="id"
+        [items]="cabins"
+        [selectedItem]="selectedCabin"
+        (selectedItemChanged)="selectCabin($event)"
+      ></app-custom-select>
+    </div>
   </div>
+
+  @if (employeeCabinHistoryData) {
+    <ion-content
+      class="tw-h-[calc(100%-18rem)] tw-w-fill-available tw-ion-bg-gray-900"
+      [scrollY]="true"
+    >
+      <div class="tw-mx-4 tw-mt-4 tw-flex tw-flex-col tw-gap-y-4">
+        @for (item of employeeCabinHistoryData.data.details; track $index) {
+          <div
+            class="tw-flex tw-w-full tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+          >
+            <div class="tw-grow">
+              <div
+                class="tw-font-roboto tw-text-base tw-font-bold tw-text-gray-900"
+              >
+                {{ selectedCabin.cabinNumber }}
+              </div>
+              <div
+                class="tw-font-roboto tw-text-sm tw-font-normal tw-text-gray-900"
+              >
+                {{ item.time | date: 'dd/MM/yyyy' }}
+              </div>
+              <div
+                class="tw-font-roboto tw-text-sm tw-font-normal tw-text-gray-900"
+              >
+                {{ item.time | date: 'HH:mm a' }}
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </ion-content>
+
+    <div
+      class="tw-m-4 tw-flex tw-w-fill-available tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+    >
+      <div class="tw-grow">
+        <div class="tw-font-roboto tw-text-sm tw-font-normal tw-text-gray-900">
+          Total Present Time
+        </div>
+        <div class="tw-font-roboto tw-text-base tw-font-bold tw-text-gray-900">
+          {{ employeeCabinHistoryData.data.totalPresentTime }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="tw-m-4 tw-flex tw-w-fill-available tw-items-center tw-rounded-xl tw-bg-gray-100 tw-px-4 tw-py-2"
+    >
+      <div class="tw-grow">
+        <div class="tw-font-roboto tw-text-sm tw-font-normal tw-text-gray-900">
+          Total Absent Time
+        </div>
+        <div class="tw-font-roboto tw-text-base tw-font-bold tw-text-gray-900">
+          {{ employeeCabinHistoryData.data.totalAbsentTime }}
+        </div>
+      </div>
+    </div>
+  }
 </ion-content>
