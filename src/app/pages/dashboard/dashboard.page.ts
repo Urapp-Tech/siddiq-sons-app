@@ -42,7 +42,7 @@ export class DashboardPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.dashboardService.getDashboardActivity().subscribe({
       next: handleResponse,

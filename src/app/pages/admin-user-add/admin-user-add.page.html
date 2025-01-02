@@ -1,7 +1,11 @@
 <app-header name="Add Admin User" type="BACK" defaultHref="/users" />
 <ion-content class="tw-ion-bg-gray-900">
-  <div class="tw-relative tw-mt-3 tw-p-4">
-    <div class="tw-z-20 tw-flex tw-flex-col tw-gap-y-4">
+  <form
+    class="tw-relative tw-px-4 tw-py-2"
+    [formGroup]="addBackOfficeUserForm"
+    (ngSubmit)="submit()"
+  >
+    <div class="tw-z-20 tw-flex tw-flex-col tw-gap-y-2">
       <div>
         <div class="tw-mb-1 tw-flex tw-items-center">
           <div
@@ -12,11 +16,34 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="firstName"
+          name="firstName"
+          formControlName="firstName"
           type="text"
           fill="outline"
           placeholder="John"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addBackOfficeUserForm.controls.firstName) &&
+              'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (
+              addBackOfficeUserForm.controls.firstName.errors;
+              as firstNameErrors
+            ) {
+              @if (firstNameErrors['required']) {
+                <span> first name is required </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -29,11 +56,34 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
           type="text"
           fill="outline"
           placeholder="Doe"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addBackOfficeUserForm.controls.lastName) &&
+              'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (
+              addBackOfficeUserForm.controls.lastName.errors;
+              as lastNameErrors
+            ) {
+              @if (lastNameErrors['required']) {
+                <span> last name is required </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -46,11 +96,34 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
-          type="text"
+          id="email"
+          name="email"
+          formControlName="email"
+          type="email"
           fill="outline"
           placeholder="JohnDoe1995@gmail.com"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addBackOfficeUserForm.controls.email) &&
+              'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (addBackOfficeUserForm.controls.email.errors; as emailErrors) {
+              @if (emailErrors['required']) {
+                <span> email is required </span>
+              }
+              @if (!emailErrors['required'] && emailErrors['email']) {
+                <span> email is invalid </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -67,7 +140,6 @@
           name="password"
           formControlName="password"
           fill="outline"
-          placeholder="Type Password"
           placeholder="********"
           [type]="passwordVisible ? 'text' : 'password'"
         >
@@ -86,23 +158,32 @@
             />
           </ion-button>
         </ion-input>
-      </div>
-
-      <div>
-        <div class="tw-mb-1 tw-flex tw-items-center">
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addBackOfficeUserForm.controls.password) &&
+              'tw-visible',
+          ]"
+        >
           <div
-            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
           >
-            Address
+            @if (
+              addBackOfficeUserForm.controls.password.errors;
+              as passwordErrors
+            ) {
+              @if (passwordErrors['required']) {
+                <span> password is required </span>
+              }
+              @if (passwordErrors['minlength']; as minlengthError) {
+                <span>
+                  password must be at least
+                  {{ minlengthError.requiredLength }} characters
+                </span>
+              }
+            }
           </div>
         </div>
-        <ion-input
-          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
-          type="text"
-          fill="outline"
-          placeholder="Abc Street, XYZ Block."
-        >
-        </ion-input>
       </div>
 
       <div>
@@ -115,21 +196,68 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="phone"
+          name="phone"
+          formControlName="phone"
           type="text"
+          inputmode="numeric"
           fill="outline"
           placeholder="03002345678"
+        >
+        </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addBackOfficeUserForm.controls.phone) &&
+              'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (addBackOfficeUserForm.controls.phone.errors; as phoneErrors) {
+              @if (phoneErrors['required']) {
+                <span> phone is required </span>
+              }
+              @if (phoneErrors['pattern']) {
+                <span> phone is invalid </span>
+              }
+            }
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="tw-mb-1 tw-flex tw-items-center">
+          <div
+            class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100"
+          >
+            Address
+          </div>
+        </div>
+        <ion-input
+          class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="address"
+          name="address"
+          formControlName="address"
+          type="text"
+          fill="outline"
+          placeholder="Abc Street, XYZ Block."
         >
         </ion-input>
       </div>
     </div>
 
-    <div class="tw-h-20"></div>
+    <div class="tw-h-8"></div>
 
     <ion-button
-      class="tw-w-fill-available tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
+      class="tw-w-fill-available tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid tw-ion-py-3"
       type="submit"
+      [disabled]="
+        addBackOfficeUserForm.invalid && addBackOfficeUserForm.touched
+      "
     >
       Submit
     </ion-button>
-  </div>
+  </form>
 </ion-content>

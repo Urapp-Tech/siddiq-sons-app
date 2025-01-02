@@ -8,10 +8,9 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import {
   BackOfficeUser,
-  Employee,
   GetBackOfficeUsersResponse,
-  GetEmployeesResponse,
-} from 'src/app/types/users.types';
+} from 'src/app/types/back-office-user.types';
+import { Employee, GetEmployeesResponse } from 'src/app/types/employee.types';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 import { SharedModule } from 'src/modules/shared.module';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
@@ -76,7 +75,7 @@ export class UsersPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.backOfficeUserService
       .getBackOfficeUsers(page, size, search)
@@ -98,7 +97,7 @@ export class UsersPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.employeeService.getEmployees(page, size, search).subscribe({
       next: handleResponse,

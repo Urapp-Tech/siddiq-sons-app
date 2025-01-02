@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { Employee } from 'src/app/types/users.types';
+import { Employee } from 'src/app/types/employee.types';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 
 @Component({

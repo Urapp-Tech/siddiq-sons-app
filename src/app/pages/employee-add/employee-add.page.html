@@ -1,8 +1,12 @@
 <app-header name="Add Employee" type="BACK" defaultHref="/users" />
 
 <ion-content class="tw-ion-bg-gray-900">
-  <div class="tw-relative tw-mt-3 tw-p-4">
-    <div class="tw-z-20 tw-flex tw-flex-col tw-gap-y-4">
+  <form
+    class="tw-relative tw-px-4 tw-py-2"
+    [formGroup]="addEmployeeForm"
+    (ngSubmit)="submit()"
+  >
+    <div class="tw-z-20 tw-flex tw-flex-col tw-gap-y-2">
       <div>
         <div class="tw-mb-1 tw-flex tw-items-center">
           <div
@@ -11,7 +15,7 @@
             Image
           </div>
         </div>
-        <input #fileInput type="file" hidden (change)="setImageName($event)" />
+        <input #fileInput type="file" hidden (change)="imageChanged($event)" />
         <ion-button
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
           type="button"
@@ -21,6 +25,18 @@
         >
           {{ imageName }}
         </ion-button>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addEmployeeForm.controls.avatar) && 'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            <span> image is required </span>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -33,11 +49,30 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="name"
+          name="name"
+          formControlName="name"
           type="text"
           fill="outline"
           placeholder="John"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addEmployeeForm.controls.name) && 'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (addEmployeeForm.controls.name.errors; as nameErrors) {
+              @if (nameErrors['required']) {
+                <span> name is required </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -50,11 +85,33 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
-          type="text"
+          id="email"
+          name="email"
+          formControlName="email"
+          type="email"
           fill="outline"
           placeholder="JohnDoe1995@gmail.com"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addEmployeeForm.controls.email) && 'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (addEmployeeForm.controls.email.errors; as emailErrors) {
+              @if (emailErrors['required']) {
+                <span> email is required </span>
+              }
+              @if (!emailErrors['required'] && emailErrors['email']) {
+                <span> email is invalid </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -67,11 +124,33 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="phone"
+          name="phone"
+          formControlName="phone"
           type="text"
           fill="outline"
           placeholder="03002345678"
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addEmployeeForm.controls.phone) && 'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            @if (addEmployeeForm.controls.phone.errors; as phoneErrors) {
+              @if (phoneErrors['required']) {
+                <span> phone is required </span>
+              }
+              @if (phoneErrors['pattern']) {
+                <span> phone is invalid </span>
+              }
+            }
+          </div>
+        </div>
       </div>
 
       <div>
@@ -84,15 +163,30 @@
         </div>
         <ion-input
           class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+          id="address"
+          name="address"
+          formControlName="address"
           type="text"
           fill="outline"
           placeholder="Abc Street, XYZ Block."
         >
         </ion-input>
+        <div
+          [cn]="[
+            'tw-invisible',
+            controlHasError(addEmployeeForm.controls.address) && 'tw-visible',
+          ]"
+        >
+          <div
+            class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+          >
+            <span> address is required </span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="tw-h-20"></div>
+    <div class="tw-h-28"></div>
 
     <ion-button
       class="tw-w-fill-available tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
@@ -100,5 +194,5 @@
     >
       Submit
     </ion-button>
-  </div>
+  </form>
 </ion-content>

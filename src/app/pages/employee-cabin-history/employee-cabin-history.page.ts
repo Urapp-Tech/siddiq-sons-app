@@ -15,7 +15,7 @@ import {
   Employee,
   EmployeeCabinHistoryData,
   GetEmployeeCabinHistoryResponse,
-} from 'src/app/types/users.types';
+} from 'src/app/types/employee.types';
 import { ionGoBack } from 'src/app/utilities/ion-go-back';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 import { SharedModule } from 'src/modules/shared.module';
@@ -173,7 +173,7 @@ export class EmployeeCabinHistoryPage implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.getCabins(page, size, search).subscribe({
       next: handleResponse,
@@ -204,7 +204,7 @@ export class EmployeeCabinHistoryPage implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.employeeService
       .getEmployeeCabinHistory(

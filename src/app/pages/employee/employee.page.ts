@@ -8,7 +8,7 @@ import { CabinService } from 'src/app/services/cabin.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { AssignCabinResponse, Cabin } from 'src/app/types/cabin.types';
-import { Employee } from 'src/app/types/users.types';
+import { Employee } from 'src/app/types/employee.types';
 import { ionGoBack } from 'src/app/utilities/ion-go-back';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 
@@ -108,7 +108,7 @@ export class EmployeePage implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.assignCabin(payload).subscribe({
       next: handleResponse,

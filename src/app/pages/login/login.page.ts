@@ -86,7 +86,7 @@ export class LoginPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.loginService.loginUser(payload).subscribe({
       next: handleResponse,

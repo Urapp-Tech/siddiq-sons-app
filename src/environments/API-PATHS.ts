@@ -62,6 +62,14 @@ export const API_PATHS = {
     return url.toString();
   },
 
+  createBackOfficeUser() {
+    const url = new URL(
+      `/api/v1/admin/back-office-user/create`,
+      environment.baseURL
+    );
+    return url.toString();
+  },
+
   getEmployees(page = 0, size = 10, search = '') {
     const url = new URL(`/api/v1/admin/employee/list`, environment.baseURL);
     url.searchParams.append('page', page.toString());
@@ -85,6 +93,11 @@ export const API_PATHS = {
     url.searchParams.append('endDate', endDate);
     url.searchParams.append('page', page.toString());
     url.searchParams.append('size', size.toString());
+    return url.toString();
+  },
+
+  createEmployee() {
+    const url = new URL(`/api/v1/admin/employee/create`, environment.baseURL);
     return url.toString();
   },
 };

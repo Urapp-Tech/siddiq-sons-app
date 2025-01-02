@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_PATHS } from 'src/environments/API-PATHS';
 import {
+  CreateEmployeePayload,
+  CreateEmployeeResponse,
   GetEmployeeCabinHistoryResponse,
   GetEmployeesResponse,
-} from '../types/users.types';
+} from '../types/employee.types';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
@@ -33,6 +35,19 @@ export class EmployeeService {
         page,
         size
       )
+    );
+  }
+
+  createEmployee(payload: CreateEmployeePayload) {
+    const formData = new FormData();
+    formData.append('name', payload.name);
+    formData.append('email', payload.email);
+    formData.append('phone', payload.phone);
+    if (payload.address) formData.append('address', payload.address);
+    if (payload.avatar) formData.append('avatar', payload.avatar);
+    return this.httpClient.post<CreateEmployeeResponse>(
+      API_PATHS.createEmployee(),
+      formData
     );
   }
 }

@@ -89,7 +89,7 @@ export class CabinPage implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.editCabin(this.cabin.id, cabinName).subscribe({
       next: handleResponse,
@@ -110,7 +110,7 @@ export class CabinPage implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.deleteCabin(this.cabin.id).subscribe({
       next: handleResponse,

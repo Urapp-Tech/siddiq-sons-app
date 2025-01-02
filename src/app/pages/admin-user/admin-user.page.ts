@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/components/header/header.component';
-import { BackOfficeUser } from 'src/app/types/users.types';
+import { BackOfficeUser } from 'src/app/types/back-office-user.types';
 import { ionGoBack } from 'src/app/utilities/ion-go-back';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 

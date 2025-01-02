@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { BackOfficeUser } from 'src/app/types/users.types';
+import { BackOfficeUser } from 'src/app/types/back-office-user.types';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 
 @Component({

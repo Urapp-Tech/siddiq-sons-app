@@ -49,7 +49,7 @@ export class CabinsPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.getCabins(page, size, search).subscribe({
       next: handleResponse,
@@ -75,7 +75,7 @@ export class CabinsPage {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.addCabin(cabinName).subscribe({
       next: handleResponse,

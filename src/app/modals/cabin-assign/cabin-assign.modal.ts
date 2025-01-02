@@ -4,7 +4,7 @@ import { CabinService } from 'src/app/services/cabin.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Cabin, GetCabinsResponse } from 'src/app/types/cabin.types';
-import { Employee } from 'src/app/types/users.types';
+import { Employee } from 'src/app/types/employee.types';
 import { IonicSharedModule } from 'src/modules/ionic-shared.module';
 import { SharedModule } from 'src/modules/shared.module';
 
@@ -57,7 +57,7 @@ export class CabinAssignModal implements OnInit {
     };
     const handleError = async (error: HttpErrorResponse) => {
       await this.loadingService.hide();
-      await this.toastService.show(error.message);
+      await this.toastService.show(error.error.message);
     };
     this.cabinService.getCabins(page, size, search).subscribe({
       next: handleResponse,
