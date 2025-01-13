@@ -1,0 +1,133 @@
+<app-header name="Reports" type="MENU" />
+<ion-content class="tw-ion-bg-gray-900">
+  <form
+    class="tw-mx-4 tw-flex tw-w-fill-available tw-flex-wrap tw-items-center tw-justify-between tw-gap-y-4"
+    [formGroup]="addActivityForm"
+    (ngSubmit)="submit()"
+  >
+    <div class="tw-mx-0.5 tw-basis-full">
+      <app-custom-select
+        class="tw-grow"
+        name="Employee"
+        displayProperty="name"
+        compareProperty="id"
+        [items]="employees"
+        [selectedItem]="selectedEmployee"
+        (selectedItemChanged)="selectEmployee($event)"
+      />
+    </div>
+
+    <div class="tw-mx-0.5 tw-basis-full">
+      <app-custom-select
+        class="tw-grow"
+        name="Operation Category"
+        displayProperty="name"
+        compareProperty="id"
+        [items]="categories"
+        [selectedItem]="selectedCategory"
+        (selectedItemChanged)="selectCategory($event)"
+      />
+    </div>
+
+    <div class="tw-mx-0.5 tw-basis-full">
+      <app-custom-select
+        class="tw-grow"
+        name="Operation Item"
+        displayProperty="name"
+        compareProperty="id"
+        [disabled]="!selectedCategory"
+        [items]="items"
+        [selectedItem]="selectedItem"
+        (selectedItemChanged)="selectItem($event)"
+      />
+    </div>
+
+    <div class="tw-mx-0.5 tw-basis-full">
+      <div class="tw-mb-1 tw-flex tw-items-center">
+        <div class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100">
+          Batch No.
+        </div>
+      </div>
+      <ion-input
+        class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+        id="batchNumber"
+        name="batchNumber"
+        formControlName="batchNumber"
+        type="text"
+        fill="outline"
+        inputmode="numeric"
+        placeholder="eg. 24"
+      />
+      <div
+        [cn]="[
+          'tw-invisible',
+          controlHasError(addActivityForm.controls.batchNumber) && 'tw-visible',
+        ]"
+      >
+        <div
+          class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+        >
+          @if (
+            addActivityForm.controls.batchNumber.errors;
+            as batchNumberErrors
+          ) {
+            @if (batchNumberErrors['required']) {
+              <span> Batch Number is required </span>
+            }
+            @if (
+              !batchNumberErrors['required'] && batchNumberErrors['pattern']
+            ) {
+              <span> batch must be a valid number </span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-mx-0.5 tw-basis-full">
+      <div class="tw-mb-1 tw-flex tw-items-center">
+        <div class="tw-font-roboto tw-text-sm tw-font-medium tw-text-gray-100">
+          Quantity
+        </div>
+      </div>
+      <ion-input
+        class="tw-min-h-12 tw-text-start tw-font-roboto tw-text-base tw-font-normal tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-rounded-md"
+        id="quantity"
+        name="quantity"
+        formControlName="quantity"
+        type="text"
+        fill="outline"
+        inputmode="numeric"
+        placeholder="eg. 42"
+      />
+      <div
+        [cn]="[
+          'tw-invisible',
+          controlHasError(addActivityForm.controls.quantity) && 'tw-visible',
+        ]"
+      >
+        <div
+          class="tw-ml-2 tw-mt-1 tw-font-roboto tw-text-xs tw-font-normal tw-text-red-500"
+        >
+          @if (addActivityForm.controls.quantity.errors; as quantityErrors) {
+            @if (quantityErrors['required']) {
+              <span> Quantity is required </span>
+            }
+            @if (!quantityErrors['required'] && quantityErrors['pattern']) {
+              <span> quantity must be a valid number </span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-h-[64vh]"></div>
+
+    <ion-button
+      class="tw-w-fill-available tw-text-gray-900 tw-ion-bg-gray-100 tw-ion-border-color-gray-100 tw-ion-border-width tw-ion-border-style-solid"
+      type="submit"
+    >
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

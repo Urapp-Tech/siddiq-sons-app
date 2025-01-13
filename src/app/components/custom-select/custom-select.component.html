@@ -1,10 +1,14 @@
 <section class="tw-w-fill-available" [id]="'custom-select-' + name">
   <button
-    class="ion-activatable tw-relative tw-flex tw-min-h-12 tw-w-full tw-items-center tw-justify-between tw-overflow-hidden tw-rounded-md tw-bg-gray-100 tw-p-3 tw-text-gray-900"
+    class="ion-activatable tw-relative tw-flex tw-min-h-12 tw-w-full tw-items-center tw-justify-between tw-overflow-hidden tw-rounded-md tw-bg-gray-100 tw-p-3 tw-text-gray-900 disabled:tw-opacity-40"
     #searchButton
+    type="button"
+    [disabled]="disabled"
     [id]="'custom-select-' + name + '-trigger'"
   >
-    <ion-ripple-effect></ion-ripple-effect>
+    @if (!searchButton.disabled) {
+      <ion-ripple-effect />
+    }
     <div class="tw-font-roboto tw-text-sm tw-font-medium">
       {{ selectedDisplayText }}
     </div>
@@ -40,7 +44,7 @@
               class="ion-activatable tw-relative tw-my-2 tw-flex tw-w-full tw-items-center tw-overflow-hidden tw-rounded-md tw-bg-gray-100 tw-p-2 tw-text-gray-900"
               (click)="selectItem(item, customSelectPopover)"
             >
-              <ion-ripple-effect></ion-ripple-effect>
+              <ion-ripple-effect />
               @if (isSameItem(item)) {
                 <ion-icon
                   class="tw-mr-2 tw-text-xl"

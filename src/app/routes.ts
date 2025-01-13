@@ -18,6 +18,11 @@ export const routes: Routes = [
       import('./pages/users/users.page').then((c) => c.UsersPage),
   },
   {
+    path: 'reports',
+    loadComponent: () =>
+      import('./pages/reports/reports.page').then((c) => c.ReportsPage),
+  },
+  {
     path: 'admin-user',
     loadComponent: () =>
       import('./pages/admin-user/admin-user.page').then((c) => c.AdminUserPage),

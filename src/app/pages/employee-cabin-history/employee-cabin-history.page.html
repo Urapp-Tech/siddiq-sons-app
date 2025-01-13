@@ -102,6 +102,7 @@
         </ng-template>
       </ion-popover>
     </div>
+
     <div class="tw-mx-0.5 tw-basis-full">
       <app-custom-select
         class="tw-grow"
@@ -111,7 +112,7 @@
         [items]="cabins"
         [selectedItem]="selectedCabin"
         (selectedItemChanged)="selectCabin($event)"
-      ></app-custom-select>
+      />
     </div>
   </div>
 

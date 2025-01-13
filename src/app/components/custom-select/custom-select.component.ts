@@ -11,6 +11,8 @@ import { SharedModule } from 'src/modules/shared.module';
   imports: [IonicSharedModule, SharedModule],
 })
 export class CustomSelectComponent {
+  @Input() disabled = false;
+
   @Input({ required: true }) name = '';
 
   @Input({ required: true }) items: Array<Record<string, any>> = [];

@@ -44,6 +44,12 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
       icon: 'grid-outline',
       iconType: 'NATIVE',
     },
+    {
+      path: '/reports',
+      name: 'Report',
+      icon: 'reader-outline',
+      iconType: 'NATIVE',
+    },
   ];
 
   async ngOnInit() {

@@ -100,4 +100,40 @@ export const API_PATHS = {
     const url = new URL(`/api/v1/admin/employee/create`, environment.baseURL);
     return url.toString();
   },
+
+  getOperationCategories(page = 0, size = 10, search = '') {
+    const url = new URL(
+      `/api/v1/admin/operation-category/list`,
+      environment.baseURL
+    );
+    url.searchParams.append('page', page.toString());
+    url.searchParams.append('size', size.toString());
+    if (search) url.searchParams.append('search', search.toString());
+    return url.toString();
+  },
+
+  getOperationCategoryItems(
+    categoryId: string,
+    page = 0,
+    size = 10,
+    search = ''
+  ) {
+    const url = new URL(
+      `/api/v1/admin/operation-category-item/list`,
+      environment.baseURL
+    );
+    url.searchParams.append('operationCategory', categoryId);
+    url.searchParams.append('page', page.toString());
+    url.searchParams.append('size', size.toString());
+    if (search) url.searchParams.append('search', search.toString());
+    return url.toString();
+  },
+
+  createOperationReport() {
+    const url = new URL(
+      `/api/v1/admin/operation-report/create`,
+      environment.baseURL
+    );
+    return url.toString();
+  },
 };
