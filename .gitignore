@@ -54,7 +54,21 @@ yarn-error.log
 .history/*
 
 # Android
-/android
+# some plugins requires changes on these files
+android/*
+!android/app
+android/app/*
+!android/app/build.gradle
+!android/app/src
+android/app/src/*
+!android/app/src/main
+android/app/src/main/*
+!android/app/src/main/AndroidManifest.xml
+!android/app/src/main/res
+android/app/src/main/res/*
+!android/app/src/main/res/values
+android/app/src/main/res/values/*
+!android/app/src/main/res/values/strings.xml
 
 # Miscellaneous
 /.angular
