@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'siddiq-sons-app',
+  appId: 'com.ur_app.periscope.ai',
+  appName: 'periscope-ai',
   webDir: 'www',
 };
 
